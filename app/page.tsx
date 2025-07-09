@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef } from "react";
 import {
   Moon,
   Sun,
@@ -22,29 +22,37 @@ import {
   TrendingUp,
   Rocket,
   Send,
-} from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import Image from "next/image";
+import Link from "next/link";
 
 interface Language {
-  code: string
-  name: string
-  flag: string
+  code: string;
+  name: string;
+  flag: string;
 }
 
 interface Translations {
   [key: string]: {
-    [key: string]: string
-  }
+    [key: string]: string;
+  };
 }
 
 const languages: Language[] = [
   { code: "vi", name: "Tiếng Việt", flag: "🇻🇳" },
   { code: "en", name: "English", flag: "🇺🇸" },
-]
+];
 
 const translations: Translations = {
   vi: {
@@ -59,7 +67,8 @@ const translations: Translations = {
 
     // Hero
     heroTitle: "Fullstack Developer",
-    heroSubtitle: "Sinh viên Kỹ thuật phần mềm tại Đại học Kinh tế TP.HCM, đam mê phát triển ứng dụng web hiện đại",
+    heroSubtitle:
+      "Sinh viên Kỹ thuật phần mềm tại Đại học Kinh tế TP.HCM, đam mê phát triển ứng dụng web hiện đại",
     downloadCV: "Tải CV",
     contactMe: "Liên hệ",
 
@@ -68,7 +77,7 @@ const translations: Translations = {
     aboutDesc1:
       "Tôi là Nguyễn Tuấn Dũng, sinh viên năm cuối ngành Kỹ thuật phần mềm tại Đại học Kinh tế TP.HCM. Với đam mê phát triển ứng dụng web, tôi đang theo đuổi con đường trở thành Fullstack Developer.",
     aboutDesc2:
-      "Tôi đã có 2 tháng kinh nghiệm làm việc thực tế tại công ty phần mềm, nơi tôi được học hỏi và áp dụng các công nghệ hiện đại trong phát triển web.",
+      "Tôi đã có 6 tháng kinh nghiệm làm việc thực tế tại công ty VSM - VietNam Student Marathon, nơi tôi được học hỏi và áp dụng các công nghệ hiện đại trong phát triển web.",
 
     // Skills
     skillsTitle: "Kỹ năng chuyên môn",
@@ -83,7 +92,12 @@ const translations: Translations = {
 
     // Experience
     experienceTitle: "Kinh nghiệm",
-    internTitle: "Thực tập sinh Phát triển phần mềm",
+    internTitle: "Thực tập sinh tại công ty VSM - VietNam Student Marathon",
+    internDesc:
+      "Tham gia phát triển ứng dụng web, học hỏi quy trình làm việc chuyên nghiệp và áp dụng các công nghệ hiện đại trong môi trường thực tế.",
+
+    experienceTitle: "Kinh nghiệm",
+    internTitle: "Thực tập sinh tại công ty VSM - VietNam Student Marathon",
     internDesc:
       "Tham gia phát triển ứng dụng web, học hỏi quy trình làm việc chuyên nghiệp và áp dụng các công nghệ hiện đại trong môi trường thực tế.",
 
@@ -134,7 +148,7 @@ const translations: Translations = {
     aboutDesc1:
       "I'm Nguyen Tuan Dung, a final-year Software Engineering student at University of Economics Ho Chi Minh City. With a passion for web application development, I'm pursuing the path to become a Fullstack Developer.",
     aboutDesc2:
-      "I have 2 months of practical work experience at a software company, where I learned and applied modern technologies in web development.",
+      "I have 2 months of practical work experience at a VSM - VietNam Student Marathon company, where I learned and applied modern technologies in web development.",
 
     // Skills
     skillsTitle: "Technical Skills",
@@ -178,54 +192,62 @@ const translations: Translations = {
     // Footer
     footerText: "Designed with ❤️ and Next.js",
   },
-}
+};
 
 export default function Portfolio() {
-  const [darkMode, setDarkMode] = useState(false)
-  const [language, setLanguage] = useState("vi")
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState("hero")
-  const [isScrolled, setIsScrolled] = useState(false)
-  const heroRef = useRef<HTMLElement>(null)
+  const [darkMode, setDarkMode] = useState(false);
+  const [language, setLanguage] = useState("vi");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("hero");
+  const [isScrolled, setIsScrolled] = useState(false);
+  const heroRef = useRef<HTMLElement>(null);
 
-  const t = (key: string) => translations[language][key] || key
+  const t = (key: string) => translations[language][key] || key;
 
   useEffect(() => {
     if (darkMode) {
-      document.documentElement.classList.add("dark")
+      document.documentElement.classList.add("dark");
     } else {
-      document.documentElement.classList.remove("dark")
+      document.documentElement.classList.remove("dark");
     }
-  }, [darkMode])
+  }, [darkMode]);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
+      setIsScrolled(window.scrollY > 50);
 
       // Update active section based on scroll position
-      const sections = ["hero", "about", "skills", "projects", "experience", "career", "contact"]
+      const sections = [
+        "hero",
+        "about",
+        "skills",
+        "projects",
+        "experience",
+        "career",
+        "contact",
+      ];
       const current = sections.find((section) => {
-        const element = document.getElementById(section)
+        const element = document.getElementById(section);
         if (element) {
-          const rect = element.getBoundingClientRect()
-          return rect.top <= 100 && rect.bottom >= 100
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
         }
-        return false
-      })
-      if (current) setActiveSection(current)
-    }
+        return false;
+      });
+      if (current) setActiveSection(current);
+    };
 
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
+    const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
+      element.scrollIntoView({ behavior: "smooth" });
     }
-    setMobileMenuOpen(false)
-  }
+    setMobileMenuOpen(false);
+  };
 
   const navItems = [
     { id: "hero", label: "Home" },
@@ -235,7 +257,7 @@ export default function Portfolio() {
     { id: "experience", label: t("experience") },
     { id: "career", label: t("career") },
     { id: "contact", label: t("contact") },
-  ]
+  ];
 
   const skills = {
     frontend: [
@@ -243,41 +265,57 @@ export default function Portfolio() {
       { name: "CSS", level: 85, icon: "🎨" },
       { name: "Bootstrap", level: 80, icon: "🅱️" },
       { name: "Tailwind CSS", level: 85, icon: "💨" },
+      { name: "NextJS", level: 85, icon: "⚡️" },
     ],
     backend: [
       { name: "Node.js", level: 75, icon: "🟢" },
       { name: "NestJS", level: 70, icon: "🐱" },
     ],
-    database: [{ name: "MongoDB", level: 70, icon: "🍃" }],
-  }
+    database: [
+      { name: "MongoDB", level: 70, icon: "🍃" },
+      { name: "MySQL", level: 70, icon: "🐬" },
+    ],
+  };
 
   const projects = [
     {
-      title: language === "vi" ? "Website Thương mại điện tử" : "E-commerce Website",
+      title:
+        language === "vi"
+          ? "Website Thương mại điện tử cho UEH SHOP"
+          : "E-commerce Website for UEH SHOP",
       description:
         language === "vi"
-          ? "Trang web thương mại điện tử với Node.js và MongoDB"
-          : "E-commerce website built with Node.js and MongoDB",
-      tech: ["Node.js", "MongoDB", "Tailwind CSS"],
-      status: t("inProgress"),
-      image: "/placeholder.svg?height=200&width=300",
+          ? "Trang web thương mại điện tử React với Node.js và MongoDB"
+          : "E-commerce website built React with Node.js and MongoDB",
+      tech: ["Node.js", "MongoDB", "Tailwind CSS", "React"],
+      status: t("completed"), //inProgress
+      image: "/img/UEH-shop.png",
+      link: "https://ueh-store-frontend-nhom9.onrender.com/",
     },
     {
-      title: language === "vi" ? "Ứng dụng Quản lý Công việc" : "Task Management App",
+      title:
+        language === "vi" ? "Ứng dụng Quản lý Học Tập" : "Study Management App",
       description:
-        language === "vi" ? "Ứng dụng quản lý công việc với NestJS" : "Task management application with NestJS",
-      tech: ["NestJS", "MongoDB", "Bootstrap"],
+        language === "vi"
+          ? "Ứng dụng quản lý học tập với NestJS"
+          : "Study management application with NestJS",
+      tech: ["NextJS", "Tailwind CSS"],
       status: t("completed"),
-      image: "/placeholder.svg?height=200&width=300",
+      image: "/img/Study-Management-App.png",
+      link: "https://management-study-v1.vercel.app/",
     },
     {
       title: language === "vi" ? "Website Portfolio" : "Portfolio Website",
-      description: language === "vi" ? "Website portfolio cá nhân responsive" : "Responsive personal portfolio website",
-      tech: ["HTML", "CSS", "JavaScript"],
+      description:
+        language === "vi"
+          ? "Website portfolio cá nhân responsive"
+          : "Responsive personal portfolio website",
+      tech: ["NestJS", "Tailwind CSS", "NextJS"],
       status: t("completed"),
-      image: "/placeholder.svg?height=200&width=300",
+      image: "/img/Porfolio.png", ///placeholder.svg?height=200&width=300
+      link: "https://my-portfolio-delta-inky-32.vercel.app/",
     },
-  ]
+  ];
 
   const careerGoals = [
     {
@@ -337,10 +375,14 @@ export default function Portfolio() {
             ],
       color: "from-orange-500 to-red-500",
     },
-  ]
+  ];
 
   return (
-    <div className={`min-h-screen transition-all duration-500 ${darkMode ? "dark" : ""}`}>
+    <div
+      className={`min-h-screen transition-all duration-500 ${
+        darkMode ? "dark" : ""
+      }`}
+    >
       <div className="bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-blue-900 text-gray-900 dark:text-white">
         {/* Navigation */}
         <nav
@@ -354,8 +396,15 @@ export default function Portfolio() {
             <div className="flex justify-between items-center">
               {/* Logo */}
               <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 flex items-center justify-center">
-                  <span className="text-white font-bold text-lg">ND</span>
+                <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 flex items-center justify-center overflow-hidden">
+                  {/* <span className="text-white font-bold text-lg">ND</span> */}
+                  <Image
+                    src="/img/Avartar cá nhân.jpg"
+                    alt="Avatar"
+                    width={50}
+                    height={50}
+                    className="rounded-full"
+                  />
                 </div>
                 <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                   Nguyễn Tuấn Dũng
@@ -392,7 +441,11 @@ export default function Portfolio() {
                     className="appearance-none bg-transparent border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                   >
                     {languages.map((lang) => (
-                      <option key={lang.code} value={lang.code} className="bg-white dark:bg-gray-800">
+                      <option
+                        key={lang.code}
+                        value={lang.code}
+                        className="bg-white dark:bg-gray-800"
+                      >
                         {lang.flag} {lang.name}
                       </option>
                     ))}
@@ -406,7 +459,11 @@ export default function Portfolio() {
                   onClick={() => setDarkMode(!darkMode)}
                   className="rounded-full hover:bg-gray-100 dark:hover:bg-gray-800"
                 >
-                  {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                  {darkMode ? (
+                    <Sun className="h-5 w-5" />
+                  ) : (
+                    <Moon className="h-5 w-5" />
+                  )}
                 </Button>
 
                 {/* Mobile Menu Toggle */}
@@ -416,7 +473,11 @@ export default function Portfolio() {
                   className="lg:hidden rounded-full"
                   onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 >
-                  {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+                  {mobileMenuOpen ? (
+                    <X className="h-5 w-5" />
+                  ) : (
+                    <Menu className="h-5 w-5" />
+                  )}
                 </Button>
               </div>
             </div>
@@ -460,11 +521,17 @@ export default function Portfolio() {
             <div className="animate-fade-in-up">
               {/* Avatar */}
               <div className="mb-8 relative">
-                <div className="w-40 h-40 mx-auto mb-6 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-1 animate-spin-slow">
+                <div className="w-40 h-40 mx-auto mb-6 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-1 animate-spin-slow overflow-hidden">
                   <div className="w-full h-full rounded-full bg-white dark:bg-gray-900 flex items-center justify-center">
-                    <span className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                      ND
-                    </span>
+                    <Image
+                      src="/img/Avartar cá nhân.jpg"
+                      alt="Avatar"
+                      width={152}
+                      height={152}
+                      className="rounded-full"
+                    />
+                    {/* <span className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent ">ND
+                    </span> */}
                   </div>
                 </div>
                 <div className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full border-4 border-white dark:border-gray-900 animate-pulse"></div>
@@ -512,7 +579,10 @@ export default function Portfolio() {
         </section>
 
         {/* About Section */}
-        <section id="about" className="py-20 px-4 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm">
+        <section
+          id="about"
+          className="py-20 px-4 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm"
+        >
           <div className="container mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
@@ -523,18 +593,30 @@ export default function Portfolio() {
 
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div className="space-y-6 animate-fade-in-left">
-                <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">{t("aboutDesc1")}</p>
-                <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">{t("aboutDesc2")}</p>
+                <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                  {t("aboutDesc1")}
+                </p>
+                <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                  {t("aboutDesc2")}
+                </p>
 
                 {/* Stats */}
                 <div className="grid grid-cols-2 gap-6 pt-6">
                   <div className="text-center p-4 rounded-xl bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20">
-                    <div className="text-3xl font-bold text-blue-600 mb-2">3.2</div>
-                    <div className="text-sm text-gray-600 dark:text-gray-400">GPA</div>
+                    <div className="text-3xl font-bold text-blue-600 mb-2">
+                      3.2
+                    </div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400">
+                      GPA
+                    </div>
                   </div>
                   <div className="text-center p-4 rounded-xl bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20">
-                    <div className="text-3xl font-bold text-purple-600 mb-2">590</div>
-                    <div className="text-sm text-gray-600 dark:text-gray-400">TOEIC</div>
+                    <div className="text-3xl font-bold text-purple-600 mb-2">
+                      590
+                    </div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400">
+                      TOEIC
+                    </div>
                   </div>
                 </div>
               </div>
@@ -546,16 +628,22 @@ export default function Portfolio() {
                       <GraduationCap className="h-6 w-6 text-blue-600" />
                       <div>
                         <div className="font-semibold">{t("university")}</div>
-                        <div className="text-sm text-gray-600 dark:text-gray-400">{t("major")}</div>
+                        <div className="text-sm text-gray-600 dark:text-gray-400">
+                          {t("major")}
+                        </div>
                       </div>
                     </div>
 
                     <div className="flex items-center gap-3 p-3 rounded-lg bg-gradient-to-r from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-800/30">
                       <Briefcase className="h-6 w-6 text-purple-600" />
                       <div>
-                        <div className="font-semibold">2 {language === "vi" ? "tháng" : "months"}</div>
+                        <div className="font-semibold">
+                          6 {language === "vi" ? "tháng" : "months"}
+                        </div>
                         <div className="text-sm text-gray-600 dark:text-gray-400">
-                          {language === "vi" ? "Kinh nghiệm thực tế" : "Practical Experience"}
+                          {language === "vi"
+                            ? "Kinh nghiệm thực tế"
+                            : "Practical Experience"}
                         </div>
                       </div>
                     </div>
@@ -597,13 +685,19 @@ export default function Portfolio() {
                 </CardHeader>
                 <CardContent className="space-y-6">
                   {skills.frontend.map((skill, index) => (
-                    <div key={skill.name} className="animate-fade-in-up" style={{ animationDelay: `${index * 0.1}s` }}>
+                    <div
+                      key={skill.name}
+                      className="animate-fade-in-up"
+                      style={{ animationDelay: `${index * 0.1}s` }}
+                    >
                       <div className="flex justify-between items-center mb-2">
                         <span className="flex items-center gap-2 font-medium">
                           <span className="text-lg">{skill.icon}</span>
                           {skill.name}
                         </span>
-                        <span className="text-sm text-gray-500">{skill.level}%</span>
+                        <span className="text-sm text-gray-500">
+                          {skill.level}%
+                        </span>
                       </div>
                       <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3 overflow-hidden">
                         <div
@@ -626,13 +720,19 @@ export default function Portfolio() {
                 </CardHeader>
                 <CardContent className="space-y-6">
                   {skills.backend.map((skill, index) => (
-                    <div key={skill.name} className="animate-fade-in-up" style={{ animationDelay: `${index * 0.1}s` }}>
+                    <div
+                      key={skill.name}
+                      className="animate-fade-in-up"
+                      style={{ animationDelay: `${index * 0.1}s` }}
+                    >
                       <div className="flex justify-between items-center mb-2">
                         <span className="flex items-center gap-2 font-medium">
                           <span className="text-lg">{skill.icon}</span>
                           {skill.name}
                         </span>
-                        <span className="text-sm text-gray-500">{skill.level}%</span>
+                        <span className="text-sm text-gray-500">
+                          {skill.level}%
+                        </span>
                       </div>
                       <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3 overflow-hidden">
                         <div
@@ -655,13 +755,19 @@ export default function Portfolio() {
                 </CardHeader>
                 <CardContent className="space-y-6">
                   {skills.database.map((skill, index) => (
-                    <div key={skill.name} className="animate-fade-in-up" style={{ animationDelay: `${index * 0.1}s` }}>
+                    <div
+                      key={skill.name}
+                      className="animate-fade-in-up"
+                      style={{ animationDelay: `${index * 0.1}s` }}
+                    >
                       <div className="flex justify-between items-center mb-2">
                         <span className="flex items-center gap-2 font-medium">
                           <span className="text-lg">{skill.icon}</span>
                           {skill.name}
                         </span>
-                        <span className="text-sm text-gray-500">{skill.level}%</span>
+                        <span className="text-sm text-gray-500">
+                          {skill.level}%
+                        </span>
                       </div>
                       <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3 overflow-hidden">
                         <div
@@ -678,7 +784,10 @@ export default function Portfolio() {
         </section>
 
         {/* Projects Section */}
-        <section id="projects" className="py-20 px-4 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm">
+        <section
+          id="projects"
+          className="py-20 px-4 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm"
+        >
           <div className="container mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
@@ -701,16 +810,28 @@ export default function Portfolio() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <Button size="icon" variant="secondary" className="rounded-full">
-                        <ExternalLink className="h-4 w-4" />
-                      </Button>
+                      <Link href={project.link} target="_blank">
+                        <Button
+                          size="icon"
+                          variant="secondary"
+                          className="rounded-full"
+                        >
+                          <ExternalLink className="h-4 w-4" />
+                        </Button>
+                      </Link>
                     </div>
                   </div>
 
                   <CardHeader>
                     <CardTitle className="flex items-center justify-between">
                       {project.title}
-                      <Badge variant={project.status === t("completed") ? "default" : "outline"}>
+                      <Badge
+                        variant={
+                          project.status === t("completed")
+                            ? "default"
+                            : "outline"
+                        }
+                      >
                         {project.status}
                       </Badge>
                     </CardTitle>
@@ -756,13 +877,17 @@ export default function Portfolio() {
                         <div>{t("internTitle")}</div>
                         <CardDescription className="flex items-center gap-2">
                           <Calendar className="h-4 w-4" />2{" "}
-                          {language === "vi" ? "tháng kinh nghiệm thực tế" : "months practical experience"}
+                          {language === "vi"
+                            ? "tháng kinh nghiệm thực tế"
+                            : "months practical experience"}
                         </CardDescription>
                       </div>
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{t("internDesc")}</p>
+                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                      {t("internDesc")}
+                    </p>
                     <div className="mt-4 flex flex-wrap gap-2">
                       <Badge variant="outline">Web Development</Badge>
                       <Badge variant="outline">Team Collaboration</Badge>
@@ -793,12 +918,20 @@ export default function Portfolio() {
                   <CardContent className="space-y-4">
                     <div className="grid grid-cols-2 gap-4">
                       <div className="text-center p-3 rounded-lg bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20">
-                        <div className="text-2xl font-bold text-purple-600 mb-1">3.2</div>
-                        <div className="text-sm text-gray-600 dark:text-gray-400">GPA</div>
+                        <div className="text-2xl font-bold text-purple-600 mb-1">
+                          3.2
+                        </div>
+                        <div className="text-sm text-gray-600 dark:text-gray-400">
+                          GPA
+                        </div>
                       </div>
                       <div className="text-center p-3 rounded-lg bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20">
-                        <div className="text-2xl font-bold text-blue-600 mb-1">590</div>
-                        <div className="text-sm text-gray-600 dark:text-gray-400">TOEIC</div>
+                        <div className="text-2xl font-bold text-blue-600 mb-1">
+                          590
+                        </div>
+                        <div className="text-sm text-gray-600 dark:text-gray-400">
+                          TOEIC
+                        </div>
                       </div>
                     </div>
                     <div className="text-center">
@@ -814,13 +947,18 @@ export default function Portfolio() {
         </section>
 
         {/* Career Goals Section */}
-        <section id="career" className="py-20 px-4 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm">
+        <section
+          id="career"
+          className="py-20 px-4 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm"
+        >
           <div className="container mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 {t("careerTitle")}
               </h2>
-              <p className="text-xl text-gray-600 dark:text-gray-300 mb-6">{t("careerSubtitle")}</p>
+              <p className="text-xl text-gray-600 dark:text-gray-300 mb-6">
+                {t("careerSubtitle")}
+              </p>
               <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full"></div>
             </div>
 
@@ -849,7 +987,9 @@ export default function Portfolio() {
                           <div
                             className={`w-2 h-2 rounded-full bg-gradient-to-r ${goal.color} mt-2 flex-shrink-0 group-hover/item:animate-ping`}
                           ></div>
-                          <span className="text-gray-700 dark:text-gray-300">{item}</span>
+                          <span className="text-gray-700 dark:text-gray-300">
+                            {item}
+                          </span>
                         </li>
                       ))}
                     </ul>
@@ -873,7 +1013,9 @@ export default function Portfolio() {
             <div className="grid lg:grid-cols-2 gap-12">
               {/* Contact Info */}
               <div className="animate-fade-in-left">
-                <h4 className="text-2xl font-semibold mb-8">{t("contactInfo")}</h4>
+                <h4 className="text-2xl font-semibold mb-8">
+                  {t("contactInfo")}
+                </h4>
                 <div className="space-y-6">
                   <a
                     href="mailto:dnguyentuan03@gmail.com"
@@ -884,7 +1026,9 @@ export default function Portfolio() {
                     </div>
                     <div>
                       <div className="font-semibold">Email</div>
-                      <div className="text-gray-600 dark:text-gray-400">dnguyentuan03@gmail.com</div>
+                      <div className="text-gray-600 dark:text-gray-400">
+                        dnguyentuan03@gmail.com
+                      </div>
                     </div>
                   </a>
 
@@ -899,7 +1043,9 @@ export default function Portfolio() {
                     </div>
                     <div>
                       <div className="font-semibold">GitHub</div>
-                      <div className="text-gray-600 dark:text-gray-400">github.com/NguyenDung0101</div>
+                      <div className="text-gray-600 dark:text-gray-400">
+                        github.com/NguyenDung0101
+                      </div>
                     </div>
                   </a>
 
@@ -914,7 +1060,9 @@ export default function Portfolio() {
                     </div>
                     <div>
                       <div className="font-semibold">Facebook</div>
-                      <div className="text-gray-600 dark:text-gray-400">Facebook Profile</div>
+                      <div className="text-gray-600 dark:text-gray-400">
+                        Facebook Profile
+                      </div>
                     </div>
                   </a>
                 </div>
@@ -975,7 +1123,10 @@ export default function Portfolio() {
               </div>
 
               <div className="flex justify-center gap-6 mb-8">
-                <a href="mailto:dnguyentuan03@gmail.com" className="hover:text-blue-400 transition-colors">
+                <a
+                  href="mailto:dnguyentuan03@gmail.com"
+                  className="hover:text-blue-400 transition-colors"
+                >
                   <Mail className="h-6 w-6" />
                 </a>
                 <a
@@ -997,12 +1148,14 @@ export default function Portfolio() {
               </div>
 
               <div className="border-t border-gray-700 pt-6">
-                <p className="text-gray-300">© 2024 Nguyễn Tuấn Dũng. {t("footerText")}</p>
+                <p className="text-gray-300">
+                  © 2024 Nguyễn Tuấn Dũng. {t("footerText")}
+                </p>
               </div>
             </div>
           </div>
         </footer>
       </div>
     </div>
-  )
+  );
 }
