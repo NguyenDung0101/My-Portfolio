@@ -286,6 +286,7 @@ export default function Portfolio() {
       status: t("completed"), //inProgress
       image: "/img/UEH-shop.png",
       link: "https://ueh-store-frontend-nhom9.onrender.com/",
+      linkGithup: "https://github.com/NguyenDung0101/E-commerce-UEH",
     },
     {
       title:
@@ -298,6 +299,7 @@ export default function Portfolio() {
       status: t("completed"),
       image: "/img/Study-Management-App.png",
       link: "https://management-study-v1.vercel.app/",
+      linkGithup: "https://github.com/NguyenDung0101/Management-Study-v1",
     },
     {
       title: language === "vi" ? "Website Portfolio" : "Portfolio Website",
@@ -309,6 +311,7 @@ export default function Portfolio() {
       status: t("completed"),
       image: "/img/Porfolio.png", ///placeholder.svg?height=200&width=300
       link: "https://my-portfolio-delta-inky-32.vercel.app/",
+      linkGithup: "https://github.com/NguyenDung0101/My-Portfolio",
     },
     {
       title: language === "vi" ? "VSM Website" : "VSM Website",
@@ -320,6 +323,7 @@ export default function Portfolio() {
       status: t("completed"),
       image: "/img/VSM-website.png", ///placeholder.svg?height=200&width=300
       link: "https://vsm.org.vn/events",
+      linkGithup: "https://github.com/NguyenDung0101/VSM-events-v1",
     },
   ];
 
@@ -845,6 +849,7 @@ export default function Portfolio() {
                   </CardHeader>
 
                   <CardContent>
+                    <div>Link Github: {project.linkGithup}</div>
                     <div className="flex flex-wrap gap-2">
                       {project.tech.map((tech) => (
                         <Badge
