@@ -66,7 +66,7 @@ const translations: Translations = {
     contact: "Liên hệ",
 
     // Hero
-    heroTitle: "Fullstack Developer",
+    heroTitle: "Frontend Developer",
     heroSubtitle:
       "Sinh viên Kỹ thuật phần mềm tại Đại học Kinh tế TP.HCM, đam mê phát triển ứng dụng web hiện đại",
     downloadCV: "Tải CV",
