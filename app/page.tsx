@@ -96,11 +96,6 @@ const translations: Translations = {
     internDesc:
       "Tham gia phát triển ứng dụng web, học hỏi quy trình làm việc chuyên nghiệp và áp dụng các công nghệ hiện đại trong môi trường thực tế.",
 
-    experienceTitle: "Kinh nghiệm",
-    internTitle: "Thực tập sinh tại công ty VSM - VietNam Student Marathon",
-    internDesc:
-      "Tham gia phát triển ứng dụng web, học hỏi quy trình làm việc chuyên nghiệp và áp dụng các công nghệ hiện đại trong môi trường thực tế.",
-
     // Education
     educationTitle: "Học vấn",
     university: "Đại học Kinh tế TP.HCM",
@@ -314,6 +309,17 @@ export default function Portfolio() {
       status: t("completed"),
       image: "/img/Porfolio.png", ///placeholder.svg?height=200&width=300
       link: "https://my-portfolio-delta-inky-32.vercel.app/",
+    },
+    {
+      title: language === "vi" ? "VSM Website" : "VSM Website",
+      description:
+        language === "vi"
+          ? "VSM là nền tảng quản lý nội dung và sự kiện dành cho sinh viên, nơi người dùng có thể đăng ký marathon, xem tin tức và theo dõi hoạt động sinh viên."
+          : "VSM is a content and event platform for students, allowing users to register for marathons, read news, and stay updated on student activities.",
+      tech: ["NestJS", "Tailwind CSS", "NextJS"],
+      status: t("completed"),
+      image: "/img/VSM-website.png", ///placeholder.svg?height=200&width=300
+      link: "https://vsm.org.vn/events",
     },
   ];
 
